@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 
-const DB = process.env['MONGO_INITDB_DATABASE'] || 'api_development'
-const URL = process.env['MONGO_URL'] || 'localhost'
-
-let connectionString = `mongodb://${URL}/${DB}`
-
-module.exports = ({ logger, environment }) => {
+module.exports = ({ logger, environment, connectionString }) => {
   mongoose.connect(connectionString, { useNewUrlParser: true }, function (err, connection) {
     if (err) {
       logger.error('Error: ' + err)
